@@ -22,6 +22,7 @@ services:
       - DISABLE_COMMANDS=FLUSHDB,FLUSHALL,CONFIG
     volumes:
       - 'redis_data:/bitnami/redis/data'
+      
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     networks: 

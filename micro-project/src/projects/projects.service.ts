@@ -4,6 +4,7 @@ import { Project } from '@prisma/client';
 import { PubSub } from 'graphql-subscriptions';
 import { Exception } from '../shared/exceptions';
 import { LoggerService } from '../shared/logger/logger.service';
+import { KafkaProducerService } from 'src/producer/kafka-producer.service';
 
 @Injectable()
 export class ProjectsService {
@@ -11,6 +12,7 @@ export class ProjectsService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly loggerService: LoggerService,
+    private readonly kafkaProducerService: KafkaProducerService,
     //private projectsQueue: Queue,
   ) {}
 
@@ -23,11 +25,13 @@ export class ProjectsService {
         },
       });
 
-      // Publish the new project to subscribers
-      this.pubSub.publish('projectCreated', {
-        projectCreated: newProject,
-        userId,
-      });
+      // // Publish the new project to subscribers
+      // this.pubSub.publish('projectCreated', {
+      //   projectCreated: newProject,
+      //   userId,
+      // });
+      this.kafkaProducerService.send(newProject);
+
       return newProject;
     } catch (e) {
       this.loggerService.error('createProject error', e, { title, userId });

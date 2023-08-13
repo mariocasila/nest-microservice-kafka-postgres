@@ -10,6 +10,8 @@ import { PubSub } from 'graphql-subscriptions';
 import { LoggerModule } from './shared/logger/logger.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { ProjectsModule } from './projects/projects.module';
+import { KafkaProducerModule } from './producer/kafka-producer.module';
+import { KAFKA_BROKER, KAFKA_CLIENT_ID } from './producer/constant';
 
 @Module({
   imports: [
@@ -49,6 +51,7 @@ import { ProjectsModule } from './projects/projects.module';
     PrismaModule,
     ProjectsModule,
     LoggerModule,
+    KafkaProducerModule.forRoot({ clientId: KAFKA_CLIENT_ID, brokers: [KAFKA_BROKER]}),
   ],
   controllers: [AppController],
   providers: [AppService, PubSub],
