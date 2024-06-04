@@ -43,7 +43,7 @@ export class MicroServiceAuthGuard implements CanActivate {
     `;
 
       const response = await axios.post(
-        'http://localhost:3000/graphql',
+        'http://localhost:3000/api/v1/graphql',
         {
           query,
           variables: { token },
@@ -54,7 +54,7 @@ export class MicroServiceAuthGuard implements CanActivate {
           },
         },
       );
-      console.log('response Data=', response.data.data.meByToken);
+      console.log('response Data=', response?.data?.data?.meByToken);
       return { ...response.data?.data?.meByToken };
     } catch (e) {
       this.loggerService.error('MicroServiceAuthGuard error', e, token);
