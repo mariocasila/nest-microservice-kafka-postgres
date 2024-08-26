@@ -14,11 +14,8 @@ import { ProjectsService } from './projects.service';
 import { ProjectType } from '../shared/interfaces/project/gql/project.type';
 import { Project } from '@prisma/client';
 import { CreateProjectsInput } from '../shared/interfaces/project/dto/create-projects.input';
-import { PubSub } from 'graphql-subscriptions';
 import { MicroServiceAuthGuard } from '../shared/decorator/microservice.auth.guard';
 import { GqlContext } from '../shared/interfaces/context.interface';
-
-const pubSub = new PubSub();
 
 @UseGuards(MicroServiceAuthGuard)
 
@@ -26,7 +23,8 @@ const pubSub = new PubSub();
 export class ProjectsResolver {
   constructor(
     private readonly projectsService: ProjectsService,
-  ) {}
+  ) {
+  }
 
   @Mutation(() => ProjectType)
   async createProject(
@@ -38,8 +36,6 @@ export class ProjectsResolver {
         createProjectsInput.title,
         Number(context.req.user.id as number),
       );
-
-      pubSub.publish('projectCreated', { projectCreated: project });
 
       return project;
     } catch (e) {
@@ -67,8 +63,4 @@ export class ProjectsResolver {
   //       return payload.userId === variables.userId; // Only send update if userId matches
   //     },
   //   })
-  @Subscription(() => ProjectType)
-  projectCreated() {
-    return pubSub.asyncIterator('projectCreated');
-  }
 }

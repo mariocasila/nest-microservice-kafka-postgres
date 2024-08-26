@@ -1,8 +1,10 @@
-import { Module, DynamicModule } from '@nestjs/common';
+import { Module, DynamicModule, Global } from '@nestjs/common';
 import { Kafka } from 'kafkajs';
 import { KafkaProducerService } from './kafka-producer.service';
 import { KAFKA_AUTHENTICATION_TIMEOUT, KAFKA_CONNECTION_TIMEOUT, KAFKA_REAUTHENTICATION_THRESHOLD } from './constant';
 
+@Global()
+@Module({})
 export class KafkaProducerModule {
   static forRoot({ clientId, brokers} : {clientId: string, brokers: string[]}): DynamicModule {
     const kafka = new Kafka({

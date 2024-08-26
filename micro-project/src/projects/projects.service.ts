@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { Project } from '@prisma/client';
 import { PubSub } from 'graphql-subscriptions';
@@ -12,13 +12,14 @@ export class ProjectsService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly loggerService: LoggerService,
+    @Inject(KafkaProducerService)
     private readonly kafkaProducerService: KafkaProducerService,
     //private projectsQueue: Queue,
   ) {}
 
   async createProject(title: string, userId: number): Promise<Project> {
     try {
-      const newProject = this.prisma.project.create({
+      const newProject = await this.prisma.project.create({
         data: {
           title,
           user: { connect: { id: userId } }, // Link to the user

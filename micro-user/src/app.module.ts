@@ -10,6 +10,8 @@ import { BullModule } from '@nestjs/bullmq';
 import { PubSub } from 'graphql-subscriptions';
 import { LoggerModule } from './shared/logger/logger.module';
 import { PrismaModule } from './prisma/prisma.module';
+import { KafkaConsumerService } from './consumer/kafka-consumer.service';
+import { GraphQLSubscribeModule } from './shared/graphql/pubsub.module';
 
 @Module({
   imports: [
@@ -49,8 +51,9 @@ import { PrismaModule } from './prisma/prisma.module';
     UsersModule,
     PrismaModule,
     LoggerModule,
+    GraphQLSubscribeModule, 
   ],
   controllers: [AppController],
-  providers: [AppService, PubSub],
+  providers: [AppService, KafkaConsumerService],
 })
 export class AppModule {}

@@ -54,7 +54,7 @@ export class MicroServiceAuthGuard implements CanActivate {
           },
         },
       );
-      console.log('response Data=', response.data.data.meByToken);
+
       return { ...response.data?.data?.meByToken };
     } catch (e) {
       this.loggerService.error('MicroServiceAuthGuard error', e, token);
