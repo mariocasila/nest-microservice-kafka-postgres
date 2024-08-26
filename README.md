@@ -1,14 +1,22 @@
 ## Description
 
 There are 2 microservices communicating over kafka.
+
 Each microservice is developed by nestjs, graphql, postgresql
+
 Microservice account listens to localhost:3000 while microservice project listens to localhost:5001
+
 Microservice project will check if a user is logged in or not via graphql communication to microservice account.
 
+
 [Short description]:
+
 User A creates an account and login with his credential via JWT token.
+
 He subscribes new project via graphql subscription.
+
 User B creates an account and login.
+
 User B creates a project and user A will subscribe his project.
 
 
