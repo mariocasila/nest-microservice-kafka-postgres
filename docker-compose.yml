@@ -1,0 +1,28 @@
+version: '3'
+services:
+  db:
+    image: postgres:13
+    tty: true
+    ports:
+      - 5000:5432
+    volumes:
+      - '/var/lib/postgresql/data'
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+
+  redis:
+    image: bitnami/redis:latest
+    tty: true
+    ports:
+      - 6379:6379
+    environment:
+      - REDIS_USERNAME=user
+      - REDIS_PASSWORD=password
+      - DISABLE_COMMANDS=FLUSHDB,FLUSHALL,CONFIG
+    volumes:
+      - 'redis_data:/bitnami/redis/data'
+
+volumes:
+  redis_data:
+    driver: local
