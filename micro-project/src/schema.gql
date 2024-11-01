@@ -1,0 +1,27 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type ProjectType {
+  id: Int!
+  title: String!
+  userId: Int!
+}
+
+type Query {
+  projects: [ProjectType!]!
+  myProjects: [ProjectType!]!
+}
+
+type Mutation {
+  createProject(createProjectsInput: CreateProjectsInput!): ProjectType!
+}
+
+input CreateProjectsInput {
+  """Project title"""
+  title: String!
+}
+
+type Subscription {
+  projectCreated: ProjectType!
+}
