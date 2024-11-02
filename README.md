@@ -9,7 +9,8 @@ Microservice account listens to localhost:3000 while microservice project listen
 Microservice project will check if a user is logged in or not via graphql communication to microservice account.
 
 
-##Short description:
+
+<b>Short description:</b>
 
 User A creates an account and login with his credential via JWT token.
 
