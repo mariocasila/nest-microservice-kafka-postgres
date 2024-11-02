@@ -24,11 +24,12 @@ User B creates a project and user A will subscribe his project.
 ## How to test
 
 Unfortunately, postman doesn't support WebSocket or subscription queries. so tested using GraphQL playground
-- To create user: <a target = "_blank">https://github.com/mariocasila/nest-microservice-kafka-postgres/tree/main/images/create_user.png </a>
-- To login: <a target = "_blank">https://github.com/mariocasila/nest-microservice-kafka-postgres/tree/main/images/login.png</a>
-- To subscribe new project: <a target = "_blank"> https://github.com/mariocasila/nest-microservice-kafka-postgres/tree/main/subscribe_project_creation.png </a>
-- To create new project: <a target = "_blank"> https://github.com/mariocasila/nest-microservice-kafka-postgres/tree/main/images/login.png </a>
-- To check subscription : <a target = "_blank"> https://github.com/mariocasila/nest-microservice-kafka-postgres/tree/main/images/subscribe_project.png </a>
+- Create user: <a target = "_blank">https://github.com/mariocasila/nest-microservice-kafka-postgres/tree/main/images/create_user.png </a>
+- Login: <a target = "_blank">https://github.com/mariocasila/nest-microservice-kafka-postgres/tree/main/images/login.png</a>
+- Subscribe new project: <a target = "_blank"> https://github.com/mariocasila/nest-microservice-kafka-postgres/tree/main/subscribe_project_creation.png </a>
+- Create new project: <a target = "_blank"> https://github.com/mariocasila/nest-microservice-kafka-postgres/tree/main/images/login.png </a>
+- Check subscription : <a target = "_blank"> https://github.com/mariocasila/nest-microservice-kafka-postgres/tree/main/images/subscribe_project.png </a>
+- Check kafka communication: <a target = "_blank"> https://github.com/mariocasila/nest-microservice-kafka-postgres/tree/main/images/kafka_drop.png </a>
 - Table User - <a target = "_blank"> https://github.com/mariocasila/nest-microservice-kafka-postgres/tree/main/images/db_user.png </a>
 - Table Project - <a target = "_blank"> https://github.com/mariocasila/nest-microservice-kafka-postgres/tree/main/images/db_project.png </a>
 
