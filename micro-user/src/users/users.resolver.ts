@@ -6,7 +6,9 @@ import {
   Args,
   Parent,
   Context,
+  Subscription
 } from '@nestjs/graphql';
+import {Inject} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UserType } from './interface/gql/user.type';
 import { Project, User } from '@prisma/client';
@@ -17,10 +19,15 @@ import { LoginInput } from './interface/dto/login.input';
 import { AuthGuard } from './decorator/ auth.guard';
 import { UseGuards } from '@nestjs/common';
 import { GqlContext } from '../shared/interfaces/context.interface';
+import { ProjectType } from './interface/gql/project.type';
+import { PubSub } from 'graphql-subscriptions';
+import { GraphQLSubscribeModule } from 'src/shared/graphql/pubsub.module';
+
 @Resolver(() => UserType)
 export class UsersResolver {
   constructor(
     private readonly usersService: UsersService,
+    @Inject(PubSub) private readonly graphqlSubscription: PubSub
   ) {}
 
   @Query(() => LoginResponse)
@@ -64,4 +71,10 @@ export class UsersResolver {
   async refreshToken(@Args('token') token: string) {
     return this.usersService.refreshTokens({ token });
   }
+
+  @Subscription(() => ProjectType)
+  projectCreated() {
+console.log('Hey projectCreated!!!!')    
+    return this.graphqlSubscription.asyncIterator('projectCreated');
+  }  
 }

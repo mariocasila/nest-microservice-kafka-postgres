@@ -25,6 +25,12 @@ type LoginResponse {
   refreshToken: String!
 }
 
+type ProjectType {
+  id: Int!
+  title: String!
+  userId: Int!
+}
+
 type Query {
   logIn(loginInput: LoginInput!): LoginResponse!
   meByToken(token: String!): UsersResponse!
@@ -64,4 +70,8 @@ input CreateUsersInput {
 
   """Bio"""
   bio: String
+}
+
+type Subscription {
+  projectCreated: ProjectType!
 }

@@ -45,6 +45,7 @@
     "graphql-subscriptions": "^2.0.0",
     "graphql-tools": "^9.0.1",
     "graphql-ws": "^5.16.0",
+    "kafkajs": "^2.2.4",
     "lodash": "^4.17.21",
     "nodemailer": "^6.9.15",
     "pg": "^8.13.0",
